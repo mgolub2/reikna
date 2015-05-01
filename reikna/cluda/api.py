@@ -155,7 +155,7 @@ class Thread:
     """
 
     @classmethod
-    def create(cls, interactive=False, device_filters=None, **thread_kwds):
+    def create(cls, interactive=False, device_filters=None, gpu_id=0, **thread_kwds):
         """
         Creates a new ``Thread`` object with its own context and queue inside.
         Intended for cases when you want to base your whole program on CLUDA.
@@ -215,7 +215,7 @@ class Thread:
 
         else:
             selected_pnum = sorted(devices.keys())[0]
-            selected_dnum = devices[selected_pnum][0]
+            selected_dnum = devices[selected_pnum][gpu_id]
 
         if thread_kwds is None:
             thread_kwds = {}
